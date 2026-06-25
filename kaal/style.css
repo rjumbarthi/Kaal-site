@@ -1,0 +1,140 @@
+/* Kaal — public site styles (jumbarthi.com/kaal) */
+:root {
+  --bg:    #0a0a0c;
+  --surf:  #15151a;
+  --ink:   #f2f2f7;
+  --ink2:  #c7c7cc;
+  --ink3:  #8e8e93;
+  --acc:   #0a84ff;
+  --acc2:  #4aa8ff;
+  --bdr:   rgba(255, 255, 255, 0.10);
+  --bdr2:  rgba(255, 255, 255, 0.06);
+  --maxw:  720px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink2);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 48px 22px 96px;
+}
+
+a { color: var(--acc2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Header / nav ─────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 17px;
+  letter-spacing: -0.3px;
+}
+.brand .dot {
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  background: linear-gradient(140deg, var(--acc), #6f4aff);
+  display: inline-block;
+}
+.nav a {
+  color: var(--ink3);
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 18px;
+}
+.nav a:hover { color: var(--ink); text-decoration: none; }
+
+/* ── Typography ───────────────────────────────────────────── */
+h1 {
+  color: var(--ink);
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+h2 {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 700;
+  margin: 32px 0 8px;
+  letter-spacing: -0.2px;
+}
+.meta { color: var(--ink3); font-size: 12px; margin: 0 0 8px; }
+.lede { color: var(--ink2); font-size: 16px; margin: 4px 0 0; }
+p { margin: 0 0 14px; }
+ul { margin: 0 0 14px; padding-left: 20px; }
+li { margin: 2px 0; }
+hr { border: none; border-top: 0.5px solid var(--bdr); margin: 24px 0; }
+strong { color: var(--ink); font-weight: 600; }
+
+/* ── Cards / callouts ─────────────────────────────────────── */
+.card {
+  background: var(--surf);
+  border: 0.5px solid var(--bdr);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 18px 0;
+}
+.note {
+  border-left: 2px solid var(--acc);
+  background: rgba(10, 132, 255, 0.06);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 18px 0;
+  color: var(--ink2);
+  font-size: 14px;
+}
+
+/* ── Home buttons ─────────────────────────────────────────── */
+.btnrow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.btn {
+  display: inline-block;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.btn-primary { background: var(--acc); color: #fff; }
+.btn-primary:hover { text-decoration: none; opacity: 0.92; }
+.btn-ghost { border: 0.5px solid var(--bdr); color: var(--ink); }
+.btn-ghost:hover { text-decoration: none; border-color: var(--ink3); }
+
+/* ── Footer ───────────────────────────────────────────────── */
+.foot {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 0.5px solid var(--bdr);
+  color: var(--ink3);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.foot a { color: var(--ink3); }
+.foot a:hover { color: var(--ink); }

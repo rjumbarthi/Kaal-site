@@ -1,0 +1,66 @@
+name: CI (PR)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Install html-proofer
+        run: gem install html-proofer --no-document
+
+      - name: Verify required static assets exist
+        run: |
+          set -euo pipefail
+          required=(
+            index.html
+            CNAME
+            app-ads.txt
+            .nojekyll
+            kaal/index.html
+            kaal/support/index.html
+            kaal/privacy/index.html
+            kaal/terms/index.html
+            kaal/delete/index.html
+            kaal/style.css
+          )
+          for path in "${required[@]}"; do
+            if [[ ! -f "$path" ]]; then
+              echo "Missing required file: $path"
+              exit 1
+            fi
+          done
+          echo "All required site files present."
+
+      - name: Lint HTML and check internal links
+        run: |
+          htmlproofer . \
+            --disable-external \
+            --allow-hash-href \
+            --ignore-empty-alt \
+            --ignore-missing-alt \
+            --no-enforce-https
+
+      - name: Validate CSS syntax
+        run: |
+          cat > /tmp/.stylelintrc.json <<'EOF'
+          {
+            "rules": {}
+          }
+          EOF
+          npx --yes stylelint@16 "kaal/style.css" --config /tmp/.stylelintrc.json

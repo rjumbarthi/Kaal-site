@@ -68,9 +68,20 @@ Document app internals only when they are shipped and sourced from Engineering /
 
 Support: [kaal_support@jumbarthi.com](mailto:kaal_support@jumbarthi.com)
 
+## CI workflows
+
+GitHub Actions under [`.github/workflows/`](.github/workflows/):
+
+| Workflow | Triggers | What it checks |
+|----------|----------|----------------|
+| **CI (PR)** (`ci-pr.yml`) | Pull requests and pushes to `main` | Required site files exist; [html-proofer](https://github.com/gjtorikian/html-proofer) validates HTML and internal links (external URLs skipped); [stylelint](https://stylelint.io/) parses `kaal/style.css`. |
+| **Verify Deploy** (`verify-deploy.yml`) | Push to `main`, manual **Run workflow** | Waits for GitHub Pages to respond, then HTTP-checks the live production URLs listed below. |
+
+To run production verification manually: **Actions → Verify Deploy → Run workflow**.
+
 ## Verify after deploy
 
-After a Pages deploy (or DNS/CNAME change), confirm these return successfully:
+After a Pages deploy (or DNS/CNAME change), confirm these return successfully (the **Verify Deploy** workflow checks the same URLs automatically):
 
 1. `https://jumbarthi.com/` (redirects to `/kaal/`)
 2. `https://jumbarthi.com/kaal/`
